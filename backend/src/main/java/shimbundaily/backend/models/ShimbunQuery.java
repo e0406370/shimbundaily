@@ -1,24 +1,22 @@
 package shimbundaily.backend.models;
 
-import java.time.Instant;
-
 import shimbundaily.backend.utility.Constants;
 
 // related endpoint: GET /search
 public class ShimbunQuery {
 
-  private String category = Constants.STRING_EMPTY;
-  private String country = "INT";
-  private String language = Constants.STRING_EMPTY;
-  private String startDate = Instant.now().toString(); // formatted as YYYY-MM-ddTHH:mm:ss.ss±hh:mm - RFC 3339 Date and Time
-  private String endDate = Instant.now().toString(); // formatted as YYYY-MM-ddTHH:mm:ss.ss±hh:mm - RFC 3339 Date and Time
+  private String category;
+  private String country;
+  private String language;
+  private String startDate;
+  private String endDate;
 
   private ShimbunQuery(Builder bdr) {
-    this.category = (bdr.category != null) ? bdr.category : this.category;
-    this.country = (bdr.country != null) ? bdr.country : this.country;
-    this.language = (bdr.language != null) ? bdr.language : this.language;
-    this.startDate = (bdr.startDate != null) ? bdr.startDate : this.startDate;
-    this.endDate = (bdr.endDate != null) ? bdr.endDate : this.endDate;
+    this.category = bdr.category;
+    this.country = bdr.country;
+    this.language = bdr.language;
+    this.startDate = bdr.startDate;
+    this.endDate = bdr.endDate;
   }
 
   public String getCategory() {
@@ -48,11 +46,11 @@ public class ShimbunQuery {
 
   public static class Builder {
 
-    private String category;
-    private String country;
-    private String language;
-    private String startDate;
-    private String endDate;
+    private String category = Constants.STRING_EMPTY;
+    private String country = Constants.STRING_EMPTY;
+    private String language = Constants.STRING_EMPTY;
+    private String startDate = Constants.STRING_EMPTY;
+    private String endDate = Constants.STRING_EMPTY;
 
     public Builder setCategory(String category) {
       this.category = category;
