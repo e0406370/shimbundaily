@@ -2,7 +2,7 @@ package shimbundaily.backend.utility;
 
 public class Constants {
 
-  public static final String SHIMBUN_API_ENDPOINT_LATEST_NEWS = "latest-news";
+  public static final String SHIMBUN_API_ENDPOINT_LATESTNEWS = "latest-news";
   public static final String SHIMBUN_API_ENDPOINT_SEARCH = "search";
 
   public static final String SHIMBUN_API_HEADER_AUTHORIZATION = "Authorization";

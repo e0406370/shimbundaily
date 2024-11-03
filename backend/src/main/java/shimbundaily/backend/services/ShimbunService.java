@@ -26,14 +26,16 @@ public class ShimbunService {
   // related endpoint: GET /latest-news
   public String retrieveLatestNews(String languageName) {
 
-    String requestUrl = UriComponentsBuilder
+    UriComponentsBuilder builder = UriComponentsBuilder
         .fromUriString(SHIMBUN_API_URL)
-        .path(Constants.SHIMBUN_API_ENDPOINT_LATEST_NEWS)
-        .queryParam(Constants.SHIMBUN_API_QUERYPARAM_LANGUAGE, ShimbunLanguage.getLanguageCode(languageName))
-        .toUriString();
+        .path(Constants.SHIMBUN_API_ENDPOINT_LATESTNEWS);
+
+    if (!languageName.isEmpty()) {
+      builder.queryParam(Constants.SHIMBUN_API_QUERYPARAM_LANGUAGE, ShimbunLanguage.getLanguageCode(languageName));
+    }
 
     RequestEntity<Void> request = RequestEntity
-        .get(requestUrl)
+        .get(builder.toUriString())
         .header(Constants.SHIMBUN_API_HEADER_AUTHORIZATION, SHIMBUN_API_TOKEN)
         .build();
 
@@ -45,18 +47,28 @@ public class ShimbunService {
   // related endpoint: GET /search
   public String retrieveNewsBySearch(ShimbunQuery query) {
 
-    String requestUrl = UriComponentsBuilder
+    UriComponentsBuilder builder = UriComponentsBuilder
         .fromUriString(SHIMBUN_API_URL)
-        .path(Constants.SHIMBUN_API_ENDPOINT_SEARCH)
-        .queryParam(Constants.SHIMBUN_API_QUERYPARAM_CATEGORY, query.getCategory())
-        .queryParam(Constants.SHIMBUN_API_QUERYPARAM_COUNTRY, ShimbunRegion.getRegionCode(query.getCountry()))
-        .queryParam(Constants.SHIMBUN_API_QUERYPARAM_LANGUAGE, ShimbunLanguage.getLanguageCode(query.getLanguage()))
-        .queryParam(Constants.SHIMBUN_API_QUERYPARAM_STARTDATE, query.getStartDate())
-        .queryParam(Constants.SHIMBUN_API_QUERYPARAM_ENDDATE, query.getEndDate())
-        .toUriString();
+        .path(Constants.SHIMBUN_API_ENDPOINT_SEARCH);
+
+    if (!query.getCategory().isEmpty()) {
+      builder.queryParam(Constants.SHIMBUN_API_QUERYPARAM_CATEGORY, query.getCategory());
+    }
+    if (!query.getCountry().isEmpty()) {
+      builder.queryParam(Constants.SHIMBUN_API_QUERYPARAM_COUNTRY, ShimbunRegion.getRegionCode(query.getCountry()));
+    }
+    if (!query.getLanguage().isEmpty()) {
+      builder.queryParam(Constants.SHIMBUN_API_QUERYPARAM_LANGUAGE, ShimbunLanguage.getLanguageCode(query.getLanguage()));
+    }
+    if (!query.getStartDate().isEmpty()) {
+      builder.queryParam(Constants.SHIMBUN_API_QUERYPARAM_STARTDATE, query.getStartDate());
+    }
+    if (!query.getEndDate().isEmpty()) {
+      builder.queryParam(Constants.SHIMBUN_API_QUERYPARAM_ENDDATE, query.getEndDate());
+    }
 
     RequestEntity<Void> request = RequestEntity
-        .get(requestUrl)
+        .get(builder.toUriString())
         .header(Constants.SHIMBUN_API_HEADER_AUTHORIZATION, SHIMBUN_API_TOKEN)
         .build();
 
