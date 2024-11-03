@@ -7,7 +7,7 @@ import shimbundaily.backend.utility.Constants;
 
 // related endpoint: GET /available/regions
 // 64 supported regions
-public enum Region {
+public enum ShimbunRegion {
   AFGHANISTAN("Afghanistan", "AF"),
   ALGERIA("Algeria", "DZ"),
   ARGENTINA("Argentina", "AR"),
@@ -76,7 +76,7 @@ public enum Region {
   private final String name;
   private final String code;
 
-  private Region(String name, String code) {
+  private ShimbunRegion(String name, String code) {
     this.name = name;
     this.code = code;
   }
@@ -90,15 +90,15 @@ public enum Region {
   }
 
   public static List<String> getAvailableRegions() {
-    return Arrays.stream(Region.values())
-        .map(Region::getName)
+    return Arrays.stream(ShimbunRegion.values())
+        .map(ShimbunRegion::getName)
         .toList();
   }
 
   public static String getRegionCode(String regionName) {
     String regionCode = Constants.STRING_EMPTY;
 
-    for (Region region : Region.values()) {
+    for (ShimbunRegion region : ShimbunRegion.values()) {
       if (region.getName().equalsIgnoreCase(regionName)) {
         regionCode = region.getCode();
         break;

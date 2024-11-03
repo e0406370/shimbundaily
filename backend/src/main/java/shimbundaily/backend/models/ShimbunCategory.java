@@ -5,7 +5,7 @@ import java.util.List;
 
 // related endpoint: GET /available/categories
 // 17 supported categories
-public enum Category {
+public enum ShimbunCategory {
   ACADEMIA("academia"),
   BUSINESS("business"),
   ENTERTAINMENT("entertainment"),
@@ -26,7 +26,7 @@ public enum Category {
 
   private final String name;
 
-  private Category(String name) {
+  private ShimbunCategory(String name) {
     this.name = name;
   }
 
@@ -35,8 +35,8 @@ public enum Category {
   }
 
   public static List<String> getAvailableCategories() {
-    return Arrays.stream(Category.values())
-        .map(Category::getName)
+    return Arrays.stream(ShimbunCategory.values())
+        .map(ShimbunCategory::getName)
         .toList();
   }
 }

@@ -7,7 +7,7 @@ import shimbundaily.backend.utility.Constants;
 
 // related endpoint: GET /available/languages
 // 23 supported languages
-public enum Language {
+public enum ShimbunLanguage {
   ARABIC("Arabic", "ar"),
   CHINESE("Chinese", "zh"),
   CZECH("Czech", "cs"),
@@ -35,7 +35,7 @@ public enum Language {
   private final String name;
   private final String code;
 
-  private Language(String name, String code) {
+  private ShimbunLanguage(String name, String code) {
     this.name = name;
     this.code = code;
   }
@@ -49,15 +49,15 @@ public enum Language {
   }
 
   public static List<String> getAvailableLanguages() {
-    return Arrays.stream(Language.values())
-        .map(Language::getName)
+    return Arrays.stream(ShimbunLanguage.values())
+        .map(ShimbunLanguage::getName)
         .toList();
   }
 
   public static String getLanguageCode(String languageName) {
     String languageCode = Constants.STRING_EMPTY;
 
-    for (Language language : Language.values()) {
+    for (ShimbunLanguage language : ShimbunLanguage.values()) {
       if (language.getName().equalsIgnoreCase(languageName)) {
         languageCode = language.getCode();
         break;
