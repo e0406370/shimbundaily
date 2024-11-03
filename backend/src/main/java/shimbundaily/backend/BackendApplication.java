@@ -1,5 +1,6 @@
 package shimbundaily.backend;
 
+import java.time.Instant;
 import java.util.List;
 
 import org.springframework.boot.SpringApplication;
@@ -8,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import shimbundaily.backend.models.Category;
 import shimbundaily.backend.models.Language;
 import shimbundaily.backend.models.Region;
+import shimbundaily.backend.models.ShimbunQuery;
 
 @SpringBootApplication
 public class BackendApplication {
@@ -25,5 +27,18 @@ public class BackendApplication {
 
 		System.out.printf("language code for Japanese: %s \n", Language.getLanguageCode("japanese"));
 		System.out.printf("region code for Singapore: %s \n", Region.getRegionCode("singapore"));
+
+		System.out.println("Current time in UTC: " + Instant.now().toString());
+
+		String country = "Singapore";
+		ShimbunQuery query1 = new ShimbunQuery.Builder()
+				.setCountry(Region.getRegionCode(country))
+				.build();
+
+		ShimbunQuery query2 = new ShimbunQuery.Builder()
+				.build();
+
+		System.out.printf("modified query with country set to Singapore: %s \n", query1.toString());
+		System.out.printf("unmodified query: %s \n", query2.toString());
 	}
 }
