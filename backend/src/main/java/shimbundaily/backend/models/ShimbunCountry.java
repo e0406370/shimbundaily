@@ -6,8 +6,8 @@ import java.util.List;
 import shimbundaily.backend.utility.Constants;
 
 // related endpoint: GET /available/regions
-// 64 supported regions
-public enum ShimbunRegion {
+// 64 supported countries
+public enum ShimbunCountry {
   AFGHANISTAN("Afghanistan", "AF"),
   ALGERIA("Algeria", "DZ"),
   ARGENTINA("Argentina", "AR"),
@@ -76,7 +76,7 @@ public enum ShimbunRegion {
   private final String name;
   private final String code;
 
-  private ShimbunRegion(String name, String code) {
+  private ShimbunCountry(String name, String code) {
     this.name = name;
     this.code = code;
   }
@@ -89,22 +89,22 @@ public enum ShimbunRegion {
     return this.code;
   }
 
-  public static List<String> getAvailableRegions() {
-    return Arrays.stream(ShimbunRegion.values())
-        .map(ShimbunRegion::getName)
+  public static List<String> getAvailableCountries() {
+    return Arrays.stream(ShimbunCountry.values())
+        .map(ShimbunCountry::getName)
         .toList();
   }
 
-  public static String getRegionCode(String regionName) {
-    String regionCode = Constants.STRING_EMPTY;
+  public static String getCountryCode(String countryName) {
+    String countryCode = Constants.STRING_EMPTY;
 
-    for (ShimbunRegion region : ShimbunRegion.values()) {
-      if (region.getName().equalsIgnoreCase(regionName)) {
-        regionCode = region.getCode();
+    for (ShimbunCountry country : ShimbunCountry.values()) {
+      if (country.getName().equalsIgnoreCase(countryName)) {
+        countryCode = country.getCode();
         break;
       }
     }
 
-    return regionCode;
+    return countryCode;
   }
 }

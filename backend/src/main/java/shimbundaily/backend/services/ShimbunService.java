@@ -9,7 +9,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import shimbundaily.backend.models.ShimbunLanguage;
 import shimbundaily.backend.models.ShimbunQuery;
-import shimbundaily.backend.models.ShimbunRegion;
+import shimbundaily.backend.models.ShimbunCountry;
 import shimbundaily.backend.utility.Constants;
 
 @Service
@@ -55,7 +55,7 @@ public class ShimbunService {
       builder.queryParam(Constants.SHIMBUN_API_QUERYPARAM_CATEGORY, query.getCategory());
     }
     if (!query.getCountry().isEmpty()) {
-      builder.queryParam(Constants.SHIMBUN_API_QUERYPARAM_COUNTRY, ShimbunRegion.getRegionCode(query.getCountry()));
+      builder.queryParam(Constants.SHIMBUN_API_QUERYPARAM_COUNTRY, ShimbunCountry.getCountryCode(query.getCountry()));
     }
     if (!query.getLanguage().isEmpty()) {
       builder.queryParam(Constants.SHIMBUN_API_QUERYPARAM_LANGUAGE, ShimbunLanguage.getLanguageCode(query.getLanguage()));

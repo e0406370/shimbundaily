@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import shimbundaily.backend.models.ShimbunCategory;
 import shimbundaily.backend.models.ShimbunLanguage;
 import shimbundaily.backend.models.ShimbunQuery;
-import shimbundaily.backend.models.ShimbunRegion;
+import shimbundaily.backend.models.ShimbunCountry;
 import shimbundaily.backend.services.ShimbunService;
 
 @SpringBootApplication
@@ -27,17 +27,17 @@ public class BackendApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		//#region testing methods in ShimbunCategory, ShimbunLanguage, ShimbunRegion
+		//#region testing methods in ShimbunCategory, ShimbunCountry, ShimbunLanguage
 		List<String> availableCategories = ShimbunCategory.getAvailableCategories();
+		List<String> availableCountries = ShimbunCountry.getAvailableCountries();
 		List<String> availableLanguages = ShimbunLanguage.getAvailableLanguages();
-		List<String> availableRegions = ShimbunRegion.getAvailableRegions();
 
 		System.out.printf("categories (%d): %s \n", availableCategories.size(), availableCategories);
+		System.out.printf("countries (%d): %s \n", availableCountries.size(), availableCountries);
 		System.out.printf("languages (%d): %s \n", availableLanguages.size(), availableLanguages);
-		System.out.printf("regions (%d): %s \n", availableRegions.size(), availableRegions);
 
+		System.out.printf("country code for Singapore: %s \n", ShimbunCountry.getCountryCode("singapore"));
 		System.out.printf("language code for Japanese: %s \n", ShimbunLanguage.getLanguageCode("japanese"));
-		System.out.printf("region code for Singapore: %s \n", ShimbunRegion.getRegionCode("singapore"));
 		//#endregion
 
 		//#region testing methods in ShimbunQuery
@@ -45,7 +45,7 @@ public class BackendApplication implements CommandLineRunner {
 
 		String country = "Singapore";
 		ShimbunQuery modifiedQuery = new ShimbunQuery.Builder()
-				.setCountry(ShimbunRegion.getRegionCode(country))
+				.setCountry(ShimbunCountry.getCountryCode(country))
 				.build();
 
 		ShimbunQuery unmodifiedQuery = new ShimbunQuery.Builder()
