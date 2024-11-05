@@ -51,19 +51,19 @@ public class ShimbunService {
         .fromUriString(SHIMBUN_API_URL)
         .path(Constants.SHIMBUN_API_ENDPOINT_SEARCH);
 
-    if (!query.getCategory().isEmpty()) {
+    if (query.getCategory() != null && !query.getCategory().isEmpty()) {
       builder.queryParam(Constants.SHIMBUN_API_QUERYPARAM_CATEGORY, query.getCategory());
     }
-    if (!query.getCountry().isEmpty()) {
+    if (query.getCountry() != null && !query.getCountry().isEmpty()) {
       builder.queryParam(Constants.SHIMBUN_API_QUERYPARAM_COUNTRY, ShimbunCountry.getCountryCode(query.getCountry()));
     }
-    if (!query.getLanguage().isEmpty()) {
+    if (query.getLanguage() != null && !query.getLanguage().isEmpty()) {
       builder.queryParam(Constants.SHIMBUN_API_QUERYPARAM_LANGUAGE, ShimbunLanguage.getLanguageCode(query.getLanguage()));
     }
-    if (!query.getStartDate().isEmpty()) {
+    if (query.getStartDate() != null && !query.getStartDate().isEmpty()) {
       builder.queryParam(Constants.SHIMBUN_API_QUERYPARAM_STARTDATE, query.getStartDate());
     }
-    if (!query.getEndDate().isEmpty()) {
+    if (query.getEndDate() != null && !query.getEndDate().isEmpty()) {
       builder.queryParam(Constants.SHIMBUN_API_QUERYPARAM_ENDDATE, query.getEndDate());
     }
 
