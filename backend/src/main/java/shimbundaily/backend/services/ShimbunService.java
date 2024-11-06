@@ -24,7 +24,7 @@ public class ShimbunService {
   private RestTemplate restTemplate = new RestTemplate();
 
   // related endpoint: GET /latest-news
-  public String retrieveLatestNews(String languageName) {
+  public String getLatestNews(String languageName) {
 
     UriComponentsBuilder builder = UriComponentsBuilder
         .fromUriString(SHIMBUN_API_URL)
@@ -45,7 +45,7 @@ public class ShimbunService {
   }
 
   // related endpoint: GET /search
-  public String retrieveNewsBySearch(ShimbunQuery query) {
+  public String getNewsBySearch(ShimbunQuery query) {
 
     UriComponentsBuilder builder = UriComponentsBuilder
         .fromUriString(SHIMBUN_API_URL)

@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import shimbundaily.backend.models.ShimbunArticle;
 import shimbundaily.backend.models.ShimbunCategory;
 import shimbundaily.backend.models.ShimbunCountry;
 import shimbundaily.backend.models.ShimbunLanguage;
 import shimbundaily.backend.models.ShimbunQuery;
 import shimbundaily.backend.services.ShimbunService;
+import shimbundaily.backend.utility.ShimbunUtils;
 
 @RestController
 public class ShimbunController {
@@ -47,15 +49,17 @@ public class ShimbunController {
   }
 
   @GetMapping(path = "/news/latest")
-  public ResponseEntity<String> retrieveLatestNews(@RequestParam String language) {
+  public ResponseEntity<List<ShimbunArticle>> retrieveLatestNews(@RequestParam String language) {
+
+    String newsPayload = shimbunSvc.getLatestNews(language);
 
     return ResponseEntity
         .status(HttpStatus.OK)
-        .body(shimbunSvc.retrieveLatestNews(language));
+        .body(ShimbunUtils.createArticlesFromNews(newsPayload));
   }
 
   @GetMapping(path = "/news/search")
-  public ResponseEntity<String> retrieveNewsBySearch(@RequestParam MultiValueMap<String, String> queryMap) {
+  public ResponseEntity<List<ShimbunArticle>> retrieveNewsBySearch(@RequestParam MultiValueMap<String, String> queryMap) {
 
     ShimbunQuery query = new ShimbunQuery.Builder()
         .setCategory(queryMap.getFirst("category"))
@@ -65,9 +69,11 @@ public class ShimbunController {
         .setEndDate(queryMap.getFirst("endDate"))
         .build();
 
+    String newsPayload = shimbunSvc.getNewsBySearch(query);    
+
     return ResponseEntity
         .status(HttpStatus.OK)
-        .body(shimbunSvc.retrieveNewsBySearch(query));
+        .body(ShimbunUtils.createArticlesFromNews(newsPayload));
   }
-
 }
+  
