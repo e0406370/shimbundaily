@@ -58,7 +58,7 @@ public class BackendApplication implements CommandLineRunner {
 		//#region testing /latest-news endpoint with query parameters
 		String testLanguage = "Japanese";
 		
-		System.out.println(shimbunSvc.retrieveLatestNews(testLanguage));
+		System.out.println(shimbunSvc.getLatestNews(testLanguage));
 		//#endregion
 
 		//#region testing /search endpoint with query parameters
@@ -70,7 +70,7 @@ public class BackendApplication implements CommandLineRunner {
 				.setEndDate("2024-11-03T10:59:59.760254700Z")
 				.build();
 
-		System.out.println(shimbunSvc.retrieveNewsBySearch(testQuery));
+		System.out.println(shimbunSvc.getNewsBySearch(testQuery));
 		//#endregion
 	}
 }
