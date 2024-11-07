@@ -55,22 +55,22 @@ public class BackendApplication implements CommandLineRunner {
 		System.out.printf("unmodified query: %s \n", unmodifiedQuery.toString());
 		//#endregion
 
-		//#region testing /latest-news endpoint with query parameters
-		String testLanguage = "Japanese";
+		// //#region testing /latest-news endpoint with query parameters
+		// String testLanguage = "Japanese";
 		
-		System.out.println(shimbunSvc.getLatestNews(testLanguage));
-		//#endregion
+		// System.out.println(shimbunSvc.getLatestNews(testLanguage));
+		// //#endregion
 
-		//#region testing /search endpoint with query parameters
-		ShimbunQuery testQuery = new ShimbunQuery.Builder()
-				.setCategory("general")
-				.setCountry("Japan")
-				.setLanguage("Japanese")
-				.setStartDate("2024-10-01T00:00:00.760254700Z")
-				.setEndDate("2024-11-03T10:59:59.760254700Z")
-				.build();
+		// //#region testing /search endpoint with query parameters
+		// ShimbunQuery testQuery = new ShimbunQuery.Builder()
+		// 		.setCategory("general")
+		// 		.setCountry("Japan")
+		// 		.setLanguage("Japanese")
+		// 		.setStartDate("2024-10-01T00:00:00.760254700Z")
+		// 		.setEndDate("2024-11-03T10:59:59.760254700Z")
+		// 		.build();
 
-		System.out.println(shimbunSvc.getNewsBySearch(testQuery));
-		//#endregion
+		// System.out.println(shimbunSvc.getNewsBySearch(testQuery));
+		// //#endregion
 	}
 }
